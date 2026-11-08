@@ -1,0 +1,103 @@
+[general]
+import = ["~/.config/alacritty/themes/noctalia.toml"]
+working_directory = "None"
+live_config_reload = true
+
+[env]
+TERM = "xterm-256color"
+WINIT_X11_SCALE_FACTOR = "1.0"
+
+[window]
+dimensions = { columns = 110, lines = 32 }
+dynamic_padding = true
+padding = { x = 18, y = 16 }
+decorations = "None"
+opacity = 0.88
+title = "Alacritty — CachyOS"
+class = { instance = "Alacritty", general = "Alacritty" }
+decorations_theme_variant = "Dark"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }
+size = 11.5
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "0x0E0E10"
+foreground = "0xF5F5F7"
+
+[colors.cursor]
+text = "0x1D1D1F"
+cursor = "0xF5A524"
+
+[colors.vi_mode_cursor]
+text = "0x101013"
+cursor = "0xF5A524"
+
+[colors.search.matches]
+foreground = "0x1D1D1F"
+background = "0xF5A524"
+
+[colors.search.focused_match]
+foreground = "0x1D1D1F"
+background = "0xF5A524"
+
+[colors.footer_bar]
+foreground = "0x1D1D1F"
+background = "0xE8E8ED"
+
+[colors.hints.start]
+foreground = "0x1D1D1F"
+background = "0x5E5CE6"
+
+[colors.hints.end]
+foreground = "0x1D1D1F"
+background = "0x5E5CE6"
+
+[colors.selection]
+text = "0x1D1D1F"
+background = "0xF5A524"
+
+
+[colors.normal]
+black   = "0x1C1C1E"
+red     = "0xFF453A"
+green   = "0x32D74B"
+yellow  = "0xFFD60A"
+blue    = "0x0A84FF"
+magenta = "0xBF5AF2"
+cyan    = "0x64D2FF"
+white   = "0xF5F5F7"
+
+[colors.bright]
+black   = "0x48484A"
+red     = "0xFF6961"
+green   = "0x4CE06A"
+yellow  = "0xFFE14D"
+blue    = "0x409CFF"
+magenta = "0xD57BFF"
+cyan    = "0x8BE0FF"
+white   = "0xFFFFFF"
+
+[colors.dim]
+black   = "0x1C1C1E"
+red     = "0xFF453A"
+green   = "0x32D74B"
+yellow  = "0xFFD60A"
+blue    = "0x0A84FF"
+magenta = "0xBF5AF2"
+cyan    = "0x64D2FF"
+white   = "0xF5F5F7"
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+save_to_clipboard = true

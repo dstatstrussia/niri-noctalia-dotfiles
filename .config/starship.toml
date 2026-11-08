@@ -1,0 +1,53 @@
+# ── Starship prompt · Abyss-Cyan ─────────────────────────────────────────────
+# Two-line prompt with a boxed header, matching the Noctalia palette.
+
+format = """
+[╭─](bold #2A3350)[ ](bold #7DCFFF)$username[ ](bold #2A3350)[@](bold #2A3350)[ ](bold #7AA2F7)$hostname[ ](bold #2A3350)[in](bold #2A3350)[ ](bold #7DCFFF)$directory$git_branch$git_status$cmd_duration
+[╰─](bold #2A3350)$character"""
+
+[username]
+style_user      = "bold #7DCFFF"
+style_root      = "bold #F7768E"
+format          = "[$user]($style)"
+show_always     = true
+
+[hostname]
+style           = "bold #7AA2F7"
+format          = "[$hostname]($style)"
+ssh_only        = false
+
+[directory]
+style           = "bold #7DCFFF"
+format          = "[$path]($style)"
+truncation_length = 3
+truncate_to_repo  = true
+read_only       = " [󰌾](bold #E0AF68)"
+use_os_path_sep = false
+
+[git_branch]
+style           = "bold #BB9AF7"
+format          = " [󰊢 $branch]($style)"
+symbol          = ""
+
+[git_status]
+style           = "bold #F7768E"
+format          = "[$all_status$ahead_behind]($style)"
+conflicted      = " [󰅾$count](bold #F7768E)"
+ahead           = " [󰁔$count](bold #9ECE6A)"
+behind          = " [󰁕$count](bold #E0AF68)"
+diverged        = " [󰓾$count](bold #E0AF68)"
+untracked       = " [󰋗$count](bold #7DCFFF)"
+modified        = " [󰏫$count](bold #E0AF68)"
+staged          = " [󰐕$count](bold #9ECE6A)"
+renamed         = " [󰑕$count](bold #BB9AF7)"
+deleted         = " [󰆴$count](bold #F7768E)"
+
+[cmd_duration]
+min_time        = 2000
+style           = "bold #E0AF68"
+format          = " [󱎫 $duration]($style)"
+
+[character]
+success_symbol  = "[❯](bold #7DCFFF)"
+error_symbol    = "[❯](bold #F7768E)"
+vimcmd_symbol   = "[❮](bold #BB9AF7)"

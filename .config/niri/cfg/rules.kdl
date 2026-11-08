@@ -1,0 +1,77 @@
+    window-rule {
+        geometry-corner-radius 12 // macOS-like rounded windows
+        clip-to-geometry true
+    }
+
+    // Liquid glass window rule: transparent with real background blur
+    window-rule {
+        opacity 0.9
+        background-effect {
+            blur true
+            xray false
+        }
+    }
+
+    // Finder-like Nautilus window rule with macOS Finder layout.
+    // One rule only: later matching rules would override earlier widths.
+    window-rule {
+        match app-id="org.gnome.Nautilus"
+        draw-border-with-background true
+        opacity 0.94
+        background-effect {
+            blur true
+            xray false
+        }
+        default-column-width { proportion 0.9; }
+        default-window-height { fixed 560; }
+        open-floating true
+        geometry-corner-radius 12
+    }
+
+    window-rule {
+        match app-id="org.gnome.Nautilus" title="^Search"
+        default-window-height { fixed 440; }
+        open-floating true
+    }
+
+    // Keep utility panels floating like macOS helper windows.
+    window-rule {
+        match app-id="org.pulseaudio.pavucontrol"
+        open-floating true
+        default-column-width { fixed 760; }
+        default-window-height { fixed 560; }
+    }
+
+    // if you use steam you will probably like these
+    window-rule {
+        match app-id="steam"
+        exclude title=r#"^[Ss]team$"#
+        open-floating true
+    }
+
+    window-rule {
+       match app-id="steam" title=r#"^notificationtoasts_\d+_desktop$"#
+       default-floating-position x=10 y=10 relative-to="bottom-right"
+       open-focused false
+    }
+
+    layer-rule {
+        match namespace="^noctalia-wallpaper"
+        place-within-backdrop true
+    }
+
+    layer-rule {
+        match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+        background-effect {
+            blur true
+            xray false
+        }
+    }
+
+    layer-rule {
+        match namespace="noctalia-window-switcher"
+        background-effect {
+            blur true
+            xray false
+        }
+    }

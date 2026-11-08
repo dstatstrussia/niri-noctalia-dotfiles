@@ -1,0 +1,30 @@
+    layout {
+        gaps 10 // Airy unixporn spacing with the floating capsule bar
+        center-focused-column "never" // Don’t auto-center focused column
+
+        background-color "transparent" // <- needed for noctalia-shell to set wallpaper
+
+        // Cyan accent matches the Abyss palette and Abstract wallpaper.
+        focus-ring {
+            width 2
+            active-color "#7DCFFF"
+            inactive-color "#2A3350"
+        }
+
+        // Subtle macOS-style window shadow. Safe with prefer-no-csd +
+        // geometry-corner-radius, so it follows the rounded corners.
+        shadow {
+            softness 24
+            spread 2
+            offset x=0 y=4
+            color "#00000066"
+        }
+
+        preset-column-widths {
+            proportion 0.33333
+            proportion 0.5
+            proportion 0.66667
+        }
+
+        struts {}
+    }

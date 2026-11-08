@@ -1,0 +1,314 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# macOS × Linux hybrid desktop
+# Niri (tiling) + Noctalia (top bar, dock, panels, settings)
+# ─────────────────────────────────────────────────────────────────────────────
+
+[shell]
+corner_radius_scale           = 2.0
+font_family                   = "Inter"
+time_format                   = "{:%H:%M}"
+date_format                   = "%a %d %b"
+offline_mode                  = false
+telemetry_enabled             = false
+polkit_agent                  = true
+password_style                = "default"
+settings_show_advanced        = true
+settings_expand_all_groups    = true
+clipboard_enabled             = true
+show_location                 = false
+niri_overview_type_to_launch_enabled   = true
+niri_overview_close_on_launch_enabled  = true
+
+[shell.panel]
+transparency_mode        = "glass"
+borders                  = true
+border_color             = "outline_variant"
+border_width             = 0.5
+shadow                   = true
+launcher_placement       = "floating"
+clipboard_placement      = "floating"
+control_center_placement = "attached"
+wallpaper_placement      = "floating"
+session_placement        = "floating"
+launcher_position        = "center"
+clipboard_position       = "center"
+
+[shell.animation]
+enabled = true
+speed   = 1.5
+
+[shell.shadow]
+direction = "down"
+alpha     = 0.45
+
+[shell.launcher]
+layout                = "full"
+width                 = 760
+search_position       = "top"
+default_view          = "all"
+categories            = true
+category_icons_only   = false
+show_navigation_labels = true
+show_settings_button  = true
+show_session_button   = true
+show_icons            = true
+compact               = false
+app_grid              = true
+track_usage           = true
+sort_by_usage         = true
+
+[wallpaper]
+enabled               = true
+fill_mode             = "crop"
+transition            = ["fade", "wipe", "zoom"]
+transition_duration   = 1200
+transition_on_startup = true
+directory             = "/usr/share/wallpapers/cachyos-wallpapers"
+
+[wallpaper.default]
+path = "/usr/share/wallpapers/cachyos-wallpapers/Abstract.png"
+
+[theme]
+mode           = "dark"
+source         = "custom"
+custom_palette = "Abyss-Cyan"
+pure_black_dark = false
+
+[theme.templates]
+enable_builtin_templates   = true
+builtin_ids                = ["gtk3", "gtk4", "alacritty"]
+enable_community_templates = false
+
+[backdrop]
+enabled        = true
+blur_intensity = 0.8
+tint_intensity = 0.2
+
+[lockscreen]
+enabled          = true
+blurred_desktop  = true
+transition       = ["fade", "zoom"]
+transition_duration = 1200
+blur_intensity   = 0.6
+tint_intensity   = 0.35
+
+[control_center]
+circular_avatar    = true
+show_avatar_border = true
+
+# ── Top bar: edge-to-edge macOS menu bar with a Linux workspace strip ─────────
+[bar.main]
+position           = "top"
+thickness          = 32
+background_opacity = 0.55
+compositor_blur    = true
+radius             = 16
+margin_ends        = 64
+margin_edge        = 7
+padding            = 10
+widget_spacing     = 8
+scale              = 1.0
+font_scale         = 0.95
+font_weight        = 600
+shadow             = true
+auto_hide          = false
+reserve_space      = true
+
+# Floating unixporn capsule bar: every widget gets a frosted pill,
+# with a hairline outline that follows the palette.
+capsule            = true
+capsule_fill       = "surface_container"
+capsule_thickness  = 0.74
+capsule_radius     = 10
+capsule_opacity    = 0.82
+capsule_border     = "outline_variant"
+capsule_border_width = 1.0
+hover_highlight    = true
+
+start  = ["launcher", "workspaces", "keyboard_layout"]
+center = ["clock"]
+end    = ["cpu", "ram", "temp", "network", "volume", "battery", "control-center", "session"]
+
+[shell.keyboard_layout]
+custom_labels = { "us" = "US", "ru" = "RU" }
+
+# ── Bar widgets ──────────────────────────────────────────────────────────────
+# Noctalia widget names use underscores (active_window, keyboard_layout).
+# The default launcher glyph inherits on_primary (near-black); force it light.
+[widget.launcher]
+color = "on_surface"
+
+# Compact date + time in the middle of the bar.
+[widget.clock]
+color  = "primary"
+format = "{:%a %d %b  %H:%M}"
+
+# Live system-monitor graphs, the signature unixporn bar module.
+[widget.cpu]
+type          = "sysmon"
+stat          = "cpu_usage"
+visualization = "graph"
+show_value    = true
+show_glyph    = true
+label_min_width = 34
+
+[widget.ram]
+type          = "sysmon"
+stat          = "ram_pct"
+visualization = "gauge"
+show_value    = true
+show_glyph    = true
+label_min_width = 30
+
+[widget.temp]
+type          = "sysmon"
+stat          = "cpu_temp"
+visualization = "gauge"
+show_value    = true
+show_glyph    = true
+label_min_width = 30
+
+[widget.network]
+show_label = false
+
+[widget.active_window]
+color        = "on_surface"
+max_length   = 200
+icon_size    = 14
+display      = "icon_and_text"
+title_scroll = "on_hover"
+
+[widget.workspaces]
+style                     = "regular"
+show_labels               = true
+label_source              = "id"
+max_label_chars           = 2
+pill_scale                = 0.9
+capsule_radius            = 7
+labels_only_when_occupied = true
+focused_output_only       = true
+empty_color               = "outline_variant"
+change_color_on_hover     = true
+
+[widget.keyboard_layout]
+hide_when_single_layout = true
+show_glyph              = false
+show_label              = true
+display                 = "short"
+
+# Keep the media slot, but don't show "Nothing is playing" clutter.
+[widget.media]
+hide_when_no_media = true
+hide_when_idle     = true
+art_size           = 18
+max_length         = 170
+title_scroll       = "on_hover"
+
+# ── Desktop widgets: rice clock + audio visualizer on empty workspaces ───────
+[desktop_widgets]
+enabled        = true
+schema_version = 2
+widget_order   = ["clock_main", "label_main", "viz_main"]
+
+[desktop_widgets.grid]
+visible        = false
+cell_size      = 16
+major_interval = 4
+
+[desktop_widgets.widget.clock_main]
+type       = "clock"
+output     = "LVDS-1"
+cx         = 683.0
+cy         = 250.0
+box_width  = 0.0
+box_height = 0.0
+rotation   = 0.0
+
+[desktop_widgets.widget.clock_main.settings]
+clock_style  = "digital"
+format       = "{:%H:%M}"
+color        = "primary"
+shadow       = true
+background   = false
+font_family  = "JetBrainsMono Nerd Font"
+center_text  = true
+
+[desktop_widgets.widget.label_main]
+type       = "label"
+output     = "LVDS-1"
+cx         = 683.0
+cy         = 318.0
+box_width  = 420.0
+box_height = 0.0
+rotation   = 0.0
+
+[desktop_widgets.widget.label_main.settings]
+title       = "overlordkdone"
+description = "niri · noctalia · cachyos"
+color       = "on_surface"
+opacity     = 0.92
+shadow      = true
+background  = false
+font_family = "JetBrainsMono Nerd Font"
+
+[desktop_widgets.widget.viz_main]
+type       = "audio_visualizer"
+output     = "LVDS-1"
+cx         = 683.0
+cy         = 440.0
+box_width  = 540.0
+box_height = 110.0
+rotation   = 0.0
+
+[desktop_widgets.widget.viz_main.settings]
+bands          = 48
+mirrored       = true
+centered       = true
+show_when_idle = false
+color_1        = "primary"
+color_2        = "secondary"
+background     = false
+
+# ── Bottom dock: macOS magnification + Linux running dots ────────────────────
+[dock]
+enabled             = true
+position            = "bottom"
+icon_size           = 44
+main_axis_padding   = 12
+cross_axis_padding  = 8
+item_spacing        = 8
+background_opacity  = 0.42
+compositor_blur     = true
+border              = "outline_variant"
+border_width        = 0.5
+radius              = 22
+radius_top_left     = 22
+radius_top_right    = 22
+radius_bottom_left  = 22
+radius_bottom_right = 22
+concave_edge_corners = false
+margin_ends         = 0
+margin_edge         = 8
+shadow              = true
+show_running        = true
+# macOS-style always-visible dock. Windows stop above it instead of being
+# covered, and Mod+Shift+D hides/shows it with the built-in slide animation.
+auto_hide           = false
+smart_auto_hide     = false
+reserve_space       = true
+layer               = "top"
+active_scale        = 1.15
+inactive_scale      = 0.9
+magnification       = true
+magnification_scale = 1.8
+active_opacity      = 1.0
+inactive_opacity    = 0.92
+show_dots           = true
+show_instance_count = false
+launcher_position   = "start"
+launcher_icon       = "grid-dots"
+# Built-in launcher glyph renders near-black on this palette; use a light one.
+launcher_custom_image = "/home/overlordkdone/.local/share/noctalia/dock-launcher.png"
+launcher_custom_image_colorize = false
+active_monitor_only = false
+pinned              = ["firefox", "org.gnome.Nautilus", "Alacritty", "cachyos-pi", "cachyos-hello", "org.gnome.Meld", "noctalia-panel-settings", "org.pulseaudio.pavucontrol"]
